@@ -1,0 +1,3 @@
+import{createClient}from"@/lib/supabase/server";import{redirect}from"next/navigation";import{hasPermission}from"@/lib/auth/permissions";
+export async function requireUser(){const supabase=await createClient();const{data:{user},error}=await supabase.auth.getUser();if(error||!user)redirect("/login");return{supabase,user};}
+export async function requirePermission(permission:string){const context=await requireUser();if(!(await hasPermission(context.supabase,context.user.id,permission)))redirect("/unauthorized");return context;}

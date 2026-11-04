@@ -1,2 +1,1 @@
-import {createClient} from "@/lib/supabase/server";import {failure,success} from "@/lib/api-response";
-export async function POST(){const{error}=await(await createClient()).auth.signOut();if(error)return failure("INTERNAL_ERROR","تعذر إنهاء الجلسة.",500);return success({loggedOut:true});}
+import{createClient}from"@/lib/supabase/server";import{failure,success}from"@/lib/api-response";export async function POST(){const{error}=await(await createClient()).auth.signOut();if(error)return failure("INTERNAL_ERROR","تعذر إنهاء الجلسة.",500);return success({loggedOut:true});}
