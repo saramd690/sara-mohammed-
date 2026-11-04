@@ -1,0 +1,3 @@
+import {NextResponse,type NextRequest} from "next/server";
+import {createClient} from "@/lib/supabase/server";
+export async function GET(request:NextRequest){const code=request.nextUrl.searchParams.get("code");const next=request.nextUrl.searchParams.get("next")??"/";const safeNext=next.startsWith("/")&&!next.startsWith("//")?next:"/";if(!code)return NextResponse.redirect(new URL("/login?error=auth_callback",request.url));const supabase=await createClient();const{error}=await supabase.auth.exchangeCodeForSession(code);return NextResponse.redirect(new URL(error?"/login?error=auth_callback":safeNext,request.url));}
