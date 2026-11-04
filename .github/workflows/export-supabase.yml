@@ -1,0 +1,21 @@
+name: Export Supabase SQL ZIP
+on:
+  push:
+    branches: ["feature/person-1-platform"]
+    paths:
+      - "supabase/**"
+      - ".github/workflows/export-supabase.yml"
+jobs:
+  export:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Create Supabase bundle
+        run: |
+          mkdir -p dist
+          zip -r dist/supabase-source.zip supabase
+      - uses: actions/upload-artifact@v4
+        with:
+          name: supabase-source-zip
+          path: dist/supabase-source.zip
+          retention-days: 30
