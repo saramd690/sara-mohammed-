@@ -11,12 +11,13 @@ jobs:
       NEXT_PUBLIC_SUPABASE_URL: https://example.supabase.co
       NEXT_PUBLIC_SUPABASE_PUBLISHABLE_KEY: sb_publishable_ci_placeholder
       NEXT_PUBLIC_MOCK_AUTH: "false"
+      AUTH_RATE_LIMIT_SECRET: ci-only-secret-value-at-least-32-characters
+      SUPABASE_SERVICE_ROLE_KEY: sb_secret_ci_placeholder
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-node@v4
         with:
           node-version: 22
-          cache: npm
       - run: npm install
       - run: npm run typecheck
       - run: npm test
