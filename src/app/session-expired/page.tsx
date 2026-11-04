@@ -1,0 +1,1 @@
+import Link from"next/link";export default function SessionExpiredPage(){return <main className="auth-shell"><section className="auth-card"><h1>انتهت الجلسة</h1><p>يرجى تسجيل الدخول مرة أخرى.</p><Link className="auth-link" href="/login">تسجيل الدخول</Link></section></main>;}

@@ -1,0 +1,1 @@
+import Link from"next/link";export default function UnauthorizedPage(){return <main className="auth-shell"><section className="auth-card"><h1>403 — غير مصرح</h1><p>لا تملك الصلاحية اللازمة للوصول.</p><Link className="auth-link" href="/">العودة للرئيسية</Link></section></main>;}
