@@ -1,0 +1,2 @@
+import {createClient} from "@/lib/supabase/server";import {failure,success} from "@/lib/api-response";
+export async function GET(){const supabase=await createClient();const{data:{user}}=await supabase.auth.getUser();if(!user)return failure("UNAUTHENTICATED","يجب تسجيل الدخول أولًا.",401);const{data,error}=await supabase.from("user_roles").select("roles(name,description)").eq("user_id",user.id);if(error)return failure("INTERNAL_ERROR","تعذر تحميل الأدوار.",500);return success((data??[]).map(x=>x.roles));}

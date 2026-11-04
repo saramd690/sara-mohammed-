@@ -1,0 +1,2 @@
+import {createClient} from "@/lib/supabase/server";import {failure,success} from "@/lib/api-response";import {getUserPermissions} from "@/lib/auth/permissions";
+export async function GET(){const supabase=await createClient();const{data:{user}}=await supabase.auth.getUser();if(!user)return failure("UNAUTHENTICATED","يجب تسجيل الدخول أولًا.",401);try{return success(await getUserPermissions(supabase,user.id));}catch{return failure("INTERNAL_ERROR","تعذر تحميل الصلاحيات.",500);}}

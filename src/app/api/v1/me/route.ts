@@ -1,0 +1,2 @@
+import {createClient} from "@/lib/supabase/server";import {failure,success} from "@/lib/api-response";
+export async function GET(){const supabase=await createClient();const{data:{user},error}=await supabase.auth.getUser();if(error||!user)return failure("UNAUTHENTICATED","يجب تسجيل الدخول أولًا.",401);const{data:profile}=await supabase.from("users").select("display_name,avatar_url,created_at").eq("id",user.id).maybeSingle();return success({id:user.id,email:user.email,profile});}
