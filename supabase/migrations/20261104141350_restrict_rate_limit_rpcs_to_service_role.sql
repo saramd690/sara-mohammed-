@@ -1,0 +1,1 @@
+revoke all on function public.begin_auth_attempt(text,text,inet,text) from anon,authenticated,public;grant execute on function public.begin_auth_attempt(text,text,inet,text) to service_role;revoke all on function public.complete_auth_attempt(bigint,uuid) from anon,authenticated,public;grant execute on function public.complete_auth_attempt(bigint,uuid) to service_role;
